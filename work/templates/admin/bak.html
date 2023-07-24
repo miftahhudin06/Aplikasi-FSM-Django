@@ -1,0 +1,94 @@
+{% extends "admin/main_layout.html" %} {% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">List Berita Acara Kerusakan</h1>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>
+                Gondola
+              </th>
+              <th>
+                Tgl
+              </th>
+              <th>
+                Sparepart
+              </th>
+              <th>
+                Spesifikasi
+              </th>
+              <th>
+                Teknisi 1
+              </th>
+              <th>
+                Teknisi 2
+              </th>
+              <th>
+                Qty
+              </th>
+              <th>
+                Analisa
+              </th>
+              <th>
+                Foto Kerusakan
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for x in a %}
+            <tr>
+              <td>
+                {{x.gondola}}
+              </td>
+              <td>
+                {{x.tgl}}
+              </td>
+              <td>
+                {{x.sparepart}}
+              </td>
+              <td>
+                {{x.spesifikasi}}
+              </td>
+              <td>
+                {{x.teknisiSatu}}
+              </td>
+              <td>
+                {{x.teknisiDua}}
+              </td>
+              <td>
+                {{x.qty}}
+              </td>
+              <td>
+                {{x.analisa}}
+              </td>
+              <td>
+                {{x.fotoKerusakan}}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!-- /.card-body -->
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+{% endblock %}

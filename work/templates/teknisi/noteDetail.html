@@ -1,0 +1,87 @@
+{% extends "teknisi/main_layout.html" %} {% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Catatan {{a.gedung}}</h1>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>
+                Teknisi Satu
+              </th>
+              <th>
+                Teknisi Dua
+              </th>
+              <th>
+                Bulan
+              </th>
+              <th>
+                Tgl
+              </th>
+              <th>
+                Tipe Gondola
+              </th>
+              <th>
+                Service
+              </th>
+              <th>
+                Catatan
+              </th>
+              <th>
+                Status
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                {{a.picSatu}}
+              </td>
+              <td>
+                {{a.picDua}}
+              </td>
+              <td>
+                {{a.bulan}}
+              </td>
+              <td>
+                {{a.tgl}}
+              </td>
+              <td>
+                {{a.tipeGondola}}
+              </td>
+              <td>
+                {{a.service}}
+              </td>
+              <td>
+                {{a.catatan}}
+              </td>
+              <td>
+                {{a.status}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.card-body -->
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+
+{% endblock %}

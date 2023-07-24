@@ -1,0 +1,112 @@
+{% extends "admin/main_layout.html" %} {% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Profil</h1>
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active">Profil</li>
+        </ol>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+        <!-- Profile Image -->
+        <div class="card card-primary card-outline">
+          <div class="card-body box-profile">
+            <div class="text-center">
+              <img class="profile-user-img img-circle" src="{{MEDIA_ROOT}}/media/{{a.foto}}"
+                style="width: 88px;height: 88px;" alt="User profile picture" />
+            </div>
+
+            <h3 class="profile-username text-center">{{a.first_name}} {{a.last_name}}</h3>
+
+
+            {% if a.is_admin == True %}
+            <p class="text-muted text-center">Admin</p>
+            {% else %}
+            <p class="text-muted text-center">Teknisi</p>
+            {% endif %}
+            </p>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+
+      </div>
+      <!-- /.col -->
+      <div class="col-md-9">
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="card card-danger">
+            <div class="card-header">
+              <h3 class="card-title">Data Karyawan</h3>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <div class="col-12">
+                  <label for="exampleInputEmail1">Nama Depan</label>
+                  {{form.first_name}}
+                </div>
+                <div class="col-12">
+                  <label for="exampleInputEmail1">Nama Belakang</label>
+                  {{form.last_name}}
+                </div>
+                <div class="col-12">
+                  <label for="exampleInputEmail1">Email</label>
+                  {{form.email}}
+                </div>
+                <div class="col-12">
+                  <label for="exampleInputEmail1">Username</label>
+                  {{form.username}}
+                </div>
+                <div class="col-12">
+                  <label for="exampleInputEmail1">Admin : </label>
+                  {{form.is_admin}}
+                </div>
+                <div class="col-12">
+                  <label for="exampleInputEmail1">Teknisi : </label>
+                  {{form.is_teknisi}}
+                </div>
+                <div class="col-12">
+                  <label for="exampleInputEmail1">Foto :</label><br>
+                  {{form.foto}}
+                </div>
+              </div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <button type="submit" class="btn btn-sm btn-primary">
+                Simpan Perubahan
+              </button>
+            </div>
+          </div>
+        </form>
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+
+{% endblock %}

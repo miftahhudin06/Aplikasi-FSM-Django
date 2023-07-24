@@ -1,0 +1,134 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  overflow-x: hidden;
+  background: #5d3891;
+}
+
+.tggl {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  left: 470px;
+  top: 262px;
+
+  background: #d9d9d9;
+  border-radius: 20px;
+}
+
+.d-flex ul {
+  position: fixed;
+  width: 30%;
+  height: 100%;
+  transition: 0.5s;
+  overflow: hidden;
+}
+
+.nav.active {
+  width: 60px;
+}
+
+.d-flex ul li {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100;
+  list-style: none;
+}
+
+.d-flex ul li:hover {
+  background: white;
+}
+
+.d-flex ul li:nth-child(1) {
+  margin-bottom: 15px;
+}
+.d-flex ul li:nth-child(1):hover {
+  background: transparant;
+}
+
+.d-flex ul li a {
+  color: black;
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+}
+.d-flex ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+}
+
+.d-flex ul li a .icon .fa-solid {
+  color: black;
+  font-size: 24px;
+}
+
+.d-flex ul li a .title {
+  position: relative;
+  padding: 0.1px;
+  height: 60px;
+  line-height: 60px;
+  display: block;
+  white-space: nowrap;
+}
+
+.container-fluid .container-fluid {
+  position: absolute;
+  left: 30%;
+  width: 70%;
+  min-height: 100vh;
+  background: #183a1d;
+}
+
+.main {
+  position: absolute;
+  width: calc(70%);
+  left: 30%;
+  min-height: 100vh;
+  transition: 0.5s;
+  background: white;
+}
+
+.main.active {
+  width: calc(100% - 60px);
+  left: 60px;
+}
+
+.main .navbar {
+  width: 100%;
+  height: 60px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+}
+
+.main .toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.main .toggle::before {
+  content: "\f1de";
+  font-family: fontAwesome;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  line-height: 60px;
+  font-size: 24px;
+  text-align: center;
+  color: black;
+}

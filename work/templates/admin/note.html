@@ -1,0 +1,55 @@
+{% extends "admin/main_layout.html" %} {% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Catatan Pekerjaan</h1>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>
+                Nama Gedung
+              </th>
+              <th>
+                Pilihan
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for x in a %}
+            <tr>
+              <td>
+                {{x.namaGedung}}
+              </td>
+              <td>
+                <a href="{% url 'notedetailadmin' x.id %}" type="button" class="btn btn-primary">
+                  Detail
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!-- /.card-body -->
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+
+{% endblock %}

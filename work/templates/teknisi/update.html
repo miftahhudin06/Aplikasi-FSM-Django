@@ -1,0 +1,69 @@
+{% extends "teknisi/main_layout.html" %} {% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Update Pekerjaan</h1>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <form action="">
+      <div class="card" style="background-color: #adb5bd;">
+        <div class=" card-header">
+          <h3 class=" card-title"><label for="">Job desk 1</label></h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-3">
+              <label for="exampleInputEmail1">Tanggal</label>
+              {{form_update.tgl}}
+            </div>
+            <div class="col-3">
+              <label for="exampleInputEmail1">Gedung</label>
+              {{form_update.gedung}}
+            </div>
+            <div class="col-3">
+              <label for="exampleInputEmail1">Teknisi 1</label>
+              {{form_update.teknisiSatu}}
+            </div>
+            <div class="col-3">
+              <label for="exampleInputEmail1">Teknisi 2</label>
+              {{form_update.teknisiDua}}
+            </div>
+            <div class="col-4">
+              <label for="exampleInputEmail1">Pekerjaan</label>
+              {{form_update.pekerjaan}}
+            </div>
+            <div class="col-4">
+              <label for="exampleInputEmail1">Hasil Pekerjaan</label>
+              {{form_update.hasilPekerjaan}}
+            </div>
+            <div class="col-4">
+              <label for="exampleInputEmail1">Catatan Khusus</label>
+              {{form_update.catatanKhusus}}
+            </div>
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+
+{% endblock %}

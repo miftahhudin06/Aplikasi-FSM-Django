@@ -1,0 +1,121 @@
+{% extends "admin/main_layout.html" %} {% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Dashboard</h1>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <!-- Info boxes -->
+    <div class="row">
+      <!-- /.col -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+
+          <div class="info-box-content">
+            <span class="info-box-text">Teknisi</span>
+            <span class="info-box-number">18</span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+
+      <!-- fix for small devices only -->
+      <div class="clearfix hidden-md-up"></div>
+
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+
+          <div class="info-box-content">
+            <span class="info-box-text">Admin</span>
+            <span class="info-box-number">3</span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <div class="card">
+      <!-- /.card-header -->
+      <div class="card-header">
+        <h3 class="card-title">Jadwal</h3>
+      </div>
+      <!-- /.card-body -->
+      <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>
+                Tgl
+              </th>
+              <th>
+                Nama Gedung
+              </th>
+              <th>
+                Pekerjaan
+              </th>
+              <th>
+                Teknisi 1
+              </th>
+              <th>
+                Teknisi 2
+              </th>
+              <th>
+                Hasil Pekerjaan
+              </th>
+              <th>
+                Catatan Khusus
+              </th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for x in a %}
+            <tr>
+              <td>
+                {{x.tgl}}
+              </td>
+              <td>{{x.gedung}}</td>
+              <td>{{x.pekerjaan}}</td>
+              <td>{{x.teknisiSatu}}</td>
+              <td>{{x.teknisiDua}}</td>
+              <td>{{x.hasilPekerjaan}}</td>
+              <td>{{x.catatanKhusus}}</td>
+              <td>
+                <a href="{% url 'deletepekerjaanadmin' x.id %}" type="button" class="btn btn-primary">
+                  Edit
+                </a>
+              </td>
+              <td>
+                <a href="{% url 'deletepekerjaanadmin' x.id %}" type="button" class="btn btn-danger">
+                  Hapus
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!-- /.card-body -->
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+{% endblock%}

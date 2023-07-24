@@ -1,0 +1,46 @@
+{% extends "admin/main_layout.html" %} {% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Input Gedung</h1>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="card" style="background-color: #adb5bd;">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-3">
+              <label for="exampleInputEmail1">Nama Gedung</label>
+              {{form.namaGedung}}
+            </div>
+            <div class="col-3">
+              <label for="exampleInputEmail1">pengelola</label>
+              {{form.pengelola}}
+            </div>
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+
+{% endblock %}

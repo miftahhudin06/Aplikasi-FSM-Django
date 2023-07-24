@@ -1,0 +1,71 @@
+{% extends "admin/main_layout.html" %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Daftar Karyawan</h1>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>
+                Nama Karyawan
+              </th>
+              <th>
+                Profil
+              </th>
+              <th>
+
+              </th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for x in page1 %}
+            <tr>
+              <td>
+                {{x.first_name}} {{x.last_name}}
+              </td>
+              <td>
+                <ul class="list-inline">
+                  <li class="list-inline-item">
+                    <img alt="Avatar" class="img-circle table-avatar" src="{{MEDIA_ROOT}}/media/{{x.foto}}" height="50"
+                      width="50">
+                </ul>
+              </td>
+              <td>
+                <a href="{% url 'editkaryawanadmin' x.id %}" type="button" class="btn btn-primary">
+                  Detail
+                </a>
+              </td>
+              <td>
+                <a href="{% url 'deletekaryawanadmin' x.id %}" type="button" class="btn btn-danger">
+                  Hapus
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!-- /.card-body -->
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+{% endblock %}

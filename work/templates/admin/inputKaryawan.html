@@ -1,0 +1,78 @@
+{% extends "admin/main_layout.html" %} {% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Register Karyawan</h1>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="card" style="background-color: #adb5bd;">
+        <div class="card-header">
+          <h3 class="card-title"><label>Karyawan</label></h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-4">
+              <label>Nama depan</label>
+              {{form.first_name}}
+            </div>
+            <div class="col-4">
+              <label>Nama Belakang</label>
+              {{form.last_name}}
+            </div>
+            <div class="col-4">
+              <label>Username</label>
+              {{form.username}}
+            </div>
+            <div class="col-4">
+              <label>Email</label>
+              {{form.email}}
+            </div>
+            <div class="col-4">
+              <label>Password</label>
+              {{form.password1}}
+            </div>
+            <div class="col-4">
+              <label>Konfirmasi Password</label>
+              {{form.password2}}
+            </div>
+            <div class="col-4">
+              <label>Foto Profil</label>
+              {{form.foto}}
+            </div>
+            <div class="col-12">
+              <label>Admin : </label>
+              {{form.is_admin}}
+            </div>
+            <div class="col-12">
+              <label>Teknisi : </label>
+              <div class="icheck-primary d-inline">{{form.is_teknisi}}</div>
+            </div>
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+
+{% endblock %}

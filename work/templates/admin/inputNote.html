@@ -1,0 +1,77 @@
+{% extends "admin/main_layout.html" %} {% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Input Catatan</h1>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="card" style="background-color: #adb5bd;">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-3">
+              <label for="exampleInputEmail1">Gedung</label>
+              {{form.gedung}}
+            </div>
+            <div class="col-3">
+              <label for="exampleInputEmail1">Teknisi 1</label>
+              {{form.picSatu}}
+            </div>
+            <div class="col-3">
+              <label for="exampleInputEmail1">Teknisi 2</label>
+              {{form.picDua}}
+            </div>
+            <div class="col-3">
+              <label for="exampleInputEmail1">Bulan</label>
+              {{form.bulan}}
+            </div>
+            <div class="col-4">
+              <label for="exampleInputEmail1">Tanggal</label>
+              {{form.tgl}}
+            </div>
+            <div class="col-4">
+              <label for="exampleInputEmail1">Tipe Gondola</label>
+              {{form.tipeGondola}}
+            </div>
+            <div class="col-4">
+              <label for="exampleInputEmail1">Service</label>
+              {{form.service}}
+            </div>
+            <div class="col-4">
+              <label for="exampleInputEmail1">Catatan</label>
+              {{form.catatan}}
+            </div>
+            <div class="col-4">
+              <label for="exampleInputEmail1">Foto Kerusakan</label>
+              {{form.fotoKerusakan}}
+            </div>
+            <div class="col-4">
+              <label for="exampleInputEmail1">Status Gondola</label>
+              {{form.status}}
+            </div>
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+{% endblock %}
