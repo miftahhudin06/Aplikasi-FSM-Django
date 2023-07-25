@@ -4,7 +4,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from work.models import BAK, Gedung, Jadwal, Karyawan, Note, TipeGondola
 from .decoratorakses import (akses_admin)
@@ -14,7 +13,6 @@ from .decoratorakses import (akses_admin)
 
 def signin(request):
     form = loginForm(request.POST or None)
-    msg = None
     if request.method == 'POST':
         if form.is_valid():
             email = form.cleaned_data.get('email')
@@ -23,15 +21,18 @@ def signin(request):
             if user is not None:
                 if user.is_admin:
                     login(request, user)
+                    messages.success(
+                        request, "Login Admin Sukses ")
                     return redirect('homeadmin')
-                else:
+                if user.is_teknisi:
                     login(request, user)
+                    messages.success(request, "Login Teknisi Sukses")
                     return redirect('home')
             else:
-                msg = "gagal login"
+                messages.error(request, "Gagal Login, Silakan Coba Lagi")
         else:
-            msg = "tidak dikenal"
-    return render(request, "login.html", {'form': form, 'msg': msg})
+            messages.error(request, "Tidak dikenal")
+    return render(request, "login.html", {'form': form, })
 
 # -------------------------ADMIN----------------------------------
 
@@ -291,7 +292,19 @@ def home(request):
 
 @login_required
 def updatePekerjaan(request):
-    form_update = UpdateForm()
+    try:
+        kSatu = Jadwal.objects.get(teknisiSatu=request.user)
+        form_update = UpdateForm(instance=kSatu)
+    except Jadwal.DoesNotExist:
+        kSatu = None
+        form_update = UpdateForm()
+
+    try:
+        kDua = Jadwal.objects.get(teknisiDua=request.user)
+        form_update = UpdateForm(instance=kDua)
+    except Jadwal.DoesNotExist:
+        kDua = None
+        form_update = UpdateForm()
     konteks = {
         'form_update': form_update,
     }

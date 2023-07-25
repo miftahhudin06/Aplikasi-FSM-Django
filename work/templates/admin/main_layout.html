@@ -310,26 +310,29 @@
     </script>
     <script>
       $(function () {
+        bsCustomFileInput.init();
+      });
+    </script>
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags == 'success'%}
+    <script>
+      $(function () {
         var Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
           showConfirmButton: false,
-          timer: 3000
+          timer: 5000
         });
-
-        $('.swalDefaultSuccess').click(function () {
-          Toast.fire({
-            icon: 'success',
-            title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-          })
-        });
+        Toast.fire({
+          icon: 'success',
+          title: '{{ message }} \n Selamat Datang {{user.first_name}} {{user.last_name}}'
+        })
       });
     </script>
-    <script>
-      $(function () {
-        bsCustomFileInput.init();
-      });
-    </script>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
 </body>
 
 </html>
