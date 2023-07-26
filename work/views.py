@@ -29,10 +29,18 @@ def signin(request):
                     messages.success(request, "Login Teknisi Sukses")
                     return redirect('home')
             else:
-                messages.error(request, "Gagal Login, Silakan Coba Lagi")
+                messages.error(
+                    request, "Akun tidak tersedia, Silakan masukan kembali")
         else:
             messages.error(request, "Tidak dikenal")
     return render(request, "login.html", {'form': form, })
+
+
+@login_required
+def signout(request):
+    logout(request)
+    messages.info(request, "Logout Berhasil")
+    return redirect('signin')
 
 # -------------------------ADMIN----------------------------------
 
