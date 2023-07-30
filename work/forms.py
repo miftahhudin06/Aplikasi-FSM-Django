@@ -4,13 +4,14 @@ from django.contrib.auth.models import User
 from work.models import BAK, Gedung, Jadwal, Karyawan, Note, TipeGondola
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.views.generic.edit import UpdateView
+from django.utils import timezone
 
 
 class loginForm(forms.Form):
     email = forms.EmailField(required=True, widget=forms.EmailInput(
         attrs={'class': 'form-control form-control-sm', 'type': 'email', 'placeholder': 'Masukan email'}))
     password = forms.CharField(max_length=100, required=True, widget=forms.PasswordInput(
-        attrs={'class': 'form-control form-control-sm', 'type':'password'}))
+        attrs={'class': 'form-control form-control-sm', 'type': 'password'}))
 
 
 class KaryawanCreateForm(UserCreationForm):

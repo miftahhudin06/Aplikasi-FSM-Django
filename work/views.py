@@ -555,6 +555,32 @@ def inputbak(request):
 
 
 @login_required
+def editBak(request, id):
+    a = BAK.objects.get(id=id)
+    if request.method == 'POST':
+        form = BakForm(request.POST, request.FILES, instance=a)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request, "Berita Acara Kerusakan berhasil di ubah")
+            return redirect(to='bak')
+        else:
+            messages.error(request, "Data tidak valid")
+    else:
+        form = BakForm(instance=a)
+    konteks = {
+        'form': form,
+    }
+    return render(request, "teknisi/inputBak.html", konteks)
+
+@login_required
+def deleteBak(request, id):
+    a = BAK.objects.get(id=id)
+    a.delete()
+    messages.success(request, "Data berhasil dihapus")
+    return redirect(to='bak')
+
+@login_required
 def daftarGondola(request):
     a = TipeGondola.objects.all()
     konteks = {

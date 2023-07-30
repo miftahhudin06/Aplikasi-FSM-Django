@@ -48,6 +48,8 @@
               <th>
                 Foto Kerusakan
               </th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -79,6 +81,16 @@
               </td>
               <td>
                 {{x.fotoKerusakan}}
+              </td>
+              <td>
+                <a href="{% url 'editbak' x.id %}" type="button" class="btn btn-primary">
+                  Edit
+                </a>
+              </td>
+              <td>
+                <a href="{% url 'deletebak' x.id %}" type="button" class="btn btn-danger">
+                  Hapus
+                </a>
               </td>
             </tr>
             {% endfor %}

@@ -87,7 +87,7 @@ class Note(models.Model):
 
 
 class Jadwal(models.Model):
-    tgl = models.DateField(null=True, default=timezone.now())
+    tgl = models.DateField(null=True)
     gedung = models.ForeignKey(Gedung, on_delete=models.CASCADE)
     teknisiSatu = models.ForeignKey(Karyawan, on_delete=models.CASCADE, null=True,
                                     related_name='pekerja1', limit_choices_to={'is_teknisi': True})
