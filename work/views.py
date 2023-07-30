@@ -446,6 +446,7 @@ def deleteGedungAdmin(request, id):
     messages.success(request, "Data berhasil di hapus")
     return redirect(to='daftargedungadmin')
 
+
 # ----------------------TEKNISI-------------------------------
 
 
