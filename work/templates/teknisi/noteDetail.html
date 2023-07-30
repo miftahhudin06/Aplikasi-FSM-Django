@@ -48,32 +48,34 @@
             </tr>
           </thead>
           <tbody>
+            {% for x in a %}
             <tr>
               <td>
-                {{a.picSatu}}
+                {{x.picSatu}}
               </td>
               <td>
-                {{a.picDua}}
+                {{x.picDua}}
               </td>
               <td>
-                {{a.bulan}}
+                {{x.bulan}}
               </td>
               <td>
-                {{a.tgl}}
+                {{x.tgl}}
               </td>
               <td>
-                {{a.tipeGondola}}
+                {{x.tipeGondola}}
               </td>
               <td>
-                {{a.service}}
+                {{x.service}}
               </td>
               <td>
-                {{a.catatan}}
+                {{x.catatan}}
               </td>
               <td>
-                {{a.status}}
+                {{x.status}}
               </td>
             </tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>

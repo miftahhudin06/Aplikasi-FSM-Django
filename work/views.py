@@ -50,9 +50,13 @@ def signout(request):
 @login_required
 @akses_admin()
 def homeAdmin(request):
+    teknisi = Karyawan.objects.filter(is_teknisi=True).count()
+    admin = Karyawan.objects.filter(is_admin=True).count()
     a = Jadwal.objects.all()
     konteks = {
-        'a': a
+        'a': a,
+        'teknisi': teknisi,
+        'admin': admin
     }
     return render(request, "admin/dashboard.html", konteks)
 
@@ -76,7 +80,10 @@ def inputKaryawanAdmin(request):
         form = KaryawanCreateForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, "Karyawan berhasil ditambahkan")
             return redirect(to='karyawanadmin')
+        else:
+            messages.error(request, "Data tidak valid")
     else:
         form = KaryawanCreateForm()
     konteks = {
@@ -93,7 +100,10 @@ def editKaryawanAdmin(request, id):
         form = KaryawanChangeForm(request.POST, request.FILES, instance=a)
         if form.is_valid():
             form.save()
+            messages.success(request, "Data Karyawan berhasil di edit")
             return redirect(to='karyawanadmin')
+        else:
+            messages.error(request, "Data tidak valid")
     else:
         form = KaryawanChangeForm(instance=a)
     konteks = {
@@ -108,6 +118,7 @@ def editKaryawanAdmin(request, id):
 def deleteKaryawanAdmin(request, id):
     d = Karyawan.objects.get(id=id)
     d.delete()
+    messages.success(request, "Data Karyawan Berhasil dihapus")
     return redirect(to='karyawanadmin')
 # ======= Profil ==============================================================
 
@@ -120,7 +131,10 @@ def profilAdmin(request):
             request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
+            messages.success(request, "Data Tersimpan")
             return redirect(to='profiladmin')
+        else:
+            messages.error(request, "Data tidak valid")
     else:
         form = KaryawanChangeForm(instance=request.user)
     konteks = {
@@ -138,7 +152,10 @@ def inputPekerjaanAdmin(request):
         form_update = JadwalForm(request.POST)
         if form_update.is_valid():
             form_update.save()
+            messages.success(request, "Jadwal berhasil ditambahkan")
             return redirect(to='homeadmin')
+        else:
+            messages.error(request, "Data tidak valid")
     else:
         form_update = JadwalForm()
     konteks = {
@@ -152,6 +169,7 @@ def inputPekerjaanAdmin(request):
 def deletePekerjaanAdmin(request, id):
     d = Jadwal.objects.get(id=id)
     d.delete()
+    messages.success(request, 'Data berhasil di hapus')
     return redirect(to='homeadmin')
 # ======= Catatan ===============================================================
 
@@ -170,11 +188,12 @@ def noteAdmin(request):
 @akses_admin()
 def noteDetailAdmin(request, id):
     try:
-        a = Note.objects.get(gedung=id)
+        a = Note.objects.filter(gedung=id)
     except Note.DoesNotExist:
+        messages.info(request, "Data belum tersedia")
         a = None
     konteks = {
-        'a': a
+        'a': a,
     }
     return render(request, "admin/noteDetail.html", konteks)
 
@@ -186,7 +205,10 @@ def inputNoteAdmin(request):
         form = InputNoteForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, "Catatan Pekerjaan berhasil ditambahkan")
             return redirect(to='noteadmin')
+        else:
+            messages.error(request, "Data tidak valid")
     else:
         form = InputNoteForm()
     konteks = {
@@ -200,6 +222,7 @@ def inputNoteAdmin(request):
 def deleteNoteAdmin(request, id):
     d = Note.objects.get(id=id)
     d.delete()
+    messages.success(request, 'Data berhasil di hapus')
     return redirect(to='noteadmin')
 
 # ===== Berita Acara Kerusakan ================================================
@@ -222,7 +245,11 @@ def inputBakAdmin(request):
         form = BakForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(
+                request, "Berita Acara Kerusakan berhasil di ajukan")
             return redirect(to='bakadmin')
+        else:
+            messages.error(request, "Data tidak valid")
     else:
         form = BakForm()
     konteks = {
@@ -250,7 +277,10 @@ def inputGondolaAdmin(request):
         form = GondolaForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Data gondola berhasil ditambahkan")
             return redirect(to='daftargondolaadmin')
+        else:
+            messages.error(request, "Data tidak valid")
     else:
         form = GondolaForm()
     konteks = {
@@ -278,7 +308,10 @@ def inputGedungAdmin(request):
         form = GedungForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Data gedung berhasil ditambahkan")
             return redirect(to='daftargedungadmin')
+        else:
+            messages.error(request, "Data tidak valid")
     else:
         form = GedungForm()
     konteks = {
@@ -291,8 +324,12 @@ def inputGedungAdmin(request):
 
 @login_required
 def home(request):
+    teknisi = Karyawan.objects.filter(is_teknisi=True).count()
+    admin = Karyawan.objects.filter(is_admin=True).count()
     a = Jadwal.objects.all()
     konteks = {
+        'teknisi': teknisi,
+        'admin': admin,
         'a': a
     }
     return render(request, "teknisi/dashboard.html", konteks)
@@ -303,6 +340,14 @@ def updatePekerjaan(request):
     try:
         kSatu = Jadwal.objects.get(teknisiSatu=request.user)
         form_update = UpdateForm(instance=kSatu)
+        if request.method == "POST":
+            form_update = UpdateForm(request.POST, instance=kSatu)
+            if form_update.is_valid():
+                form_update.save()
+                messages.success(request, "Update Jadwal Berhasil")
+                return redirect(to='home')
+            else:
+                messages.error(request, "Data tidak valid")
     except Jadwal.DoesNotExist:
         kSatu = None
         form_update = UpdateForm()
@@ -310,6 +355,14 @@ def updatePekerjaan(request):
     try:
         kDua = Jadwal.objects.get(teknisiDua=request.user)
         form_update = UpdateForm(instance=kDua)
+        if request.method == "POST":
+            form_update = UpdateForm(request.POST, instance=kDua)
+            if form_update.is_valid():
+                form_update.save()
+                messages.success(request, "Update Jadwal Berhasil")
+                return redirect(to='home')
+            else:
+                messages.error(request, "Data tidak valid")
     except Jadwal.DoesNotExist:
         kDua = None
         form_update = UpdateForm()
@@ -356,7 +409,17 @@ def bak(request):
 
 @login_required
 def inputbak(request):
-    form = BakForm()
+    if request.method == 'POST':
+        form = BakForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request, "Berita Acara Kerusakan berhasil di ajukan")
+            return redirect(to='bak')
+        else:
+            messages.error(request, "Data tidak valid")
+    else:
+        form = BakForm()
     konteks = {
         'form': form,
     }

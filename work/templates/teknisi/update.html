@@ -16,7 +16,8 @@
 <!-- Main content -->
 <div class="content">
   <div class="container-fluid">
-    <form action="">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
       <div class="card" style="background-color: #adb5bd;">
         <div class=" card-header">
           <h3 class=" card-title"><label for="">Job desk 1</label></h3>

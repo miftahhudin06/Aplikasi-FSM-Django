@@ -326,7 +326,39 @@
         });
         Toast.fire({
           icon: 'success',
-          title: '{{ message }} \n Selamat Datang {{user.first_name}} {{user.last_name}}'
+          title: '{{ message }}'
+        })
+      });
+    </script>
+    {% endif %}
+    {% if message.tags == 'info'%}
+    <script>
+      $(function () {
+        var Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 5000
+        });
+        Toast.fire({
+          icon: 'info',
+          title: '{{ message }}'
+        })
+      });
+    </script>
+    {% endif %}
+    {% if message.tags == 'error'%}
+    <script>
+      $(function () {
+        var Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 5000
+        });
+        Toast.fire({
+          icon: 'error',
+          title: '{{ message }}'
         })
       });
     </script>
