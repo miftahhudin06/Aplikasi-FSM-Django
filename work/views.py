@@ -166,6 +166,26 @@ def inputPekerjaanAdmin(request):
 
 @login_required
 @akses_admin()
+def editPekerjaanAdmin(request, id):
+    a = Jadwal.objects.get(id=id)
+    if request.method == 'POST':
+        form_update = JadwalForm(request.POST, instance=a)
+        if form_update.is_valid():
+            form_update.save()
+            messages.success(request, "Data berhasil di edit")
+            return redirect(to='homeadmin')
+        else:
+            messages.error(request, 'Data tidak valid')
+    else:
+        form_update = JadwalForm(instance=a)
+    konteks = {
+        'form_update': form_update,
+    }
+    return render(request, "admin/inputJadwal.html", konteks)
+
+
+@login_required
+@akses_admin()
 def deletePekerjaanAdmin(request, id):
     d = Jadwal.objects.get(id=id)
     d.delete()
@@ -219,6 +239,26 @@ def inputNoteAdmin(request):
 
 @login_required
 @akses_admin()
+def editNoteAdmin(request, id):
+    a = Note.objects.get(id=id)
+    if request.method == 'POST':
+        form = InputNoteForm(request.POST, request.FILES, instance=a)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Catatan Pekerjaan berhasil diedit")
+            return redirect(to='noteadmin')
+        else:
+            messages.error(request, "Data tidak valid")
+    else:
+        form = InputNoteForm(instance=a)
+    konteks = {
+        'form': form,
+    }
+    return render(request, "admin/inputNote.html", konteks)
+
+
+@login_required
+@akses_admin()
 def deleteNoteAdmin(request, id):
     d = Note.objects.get(id=id)
     d.delete()
@@ -257,6 +297,35 @@ def inputBakAdmin(request):
     }
     return render(request, "admin/inputBak.html", konteks)
 
+
+@login_required
+@akses_admin()
+def editBakAdmin(request, id):
+    a = BAK.objects.get(id=id)
+    if request.method == 'POST':
+        form = BakForm(request.POST, request.FILES, instance=a)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request, "Berita Acara Kerusakan berhasil di ubah")
+            return redirect(to='bakadmin')
+        else:
+            messages.error(request, "Data tidak valid")
+    else:
+        form = BakForm(instance=a)
+    konteks = {
+        'form': form,
+    }
+    return render(request, "admin/inputBak.html", konteks)
+
+
+@login_required
+@akses_admin()
+def deleteBakAdmin(request, id):
+    a = BAK.objects.get(id=id)
+    a.delete()
+    messages.success(request, "Data berhasil dihapus")
+    return redirect(to='bakadmin')
 # ======= Gondola ==============================================================
 
 
@@ -287,6 +356,35 @@ def inputGondolaAdmin(request):
         'form': form,
     }
     return render(request, "admin/inputGondola.html", konteks)
+
+
+@login_required
+@akses_admin()
+def editGondolaAdmin(request, id):
+    a = TipeGondola.objects.get(id=id)
+    if request.method == 'POST':
+        form = GondolaForm(request.POST, instance=a)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Data gondola berhasil di edit")
+            return redirect(to='daftargondolaadmin')
+        else:
+            messages.error(request, "Data tidak valid")
+    else:
+        form = GondolaForm(instance=a)
+    konteks = {
+        'form': form,
+    }
+    return render(request, "admin/inputGondola.html", konteks)
+
+
+@login_required
+@akses_admin()
+def deleteGondolaAdmin(request, id):
+    a = TipeGondola.objects.get(id=id)
+    a.delete()
+    messages.success(request, "Data berhasil dihapus")
+    return redirect(to='daftargondolaadmin')
 
 # ======= Gedung =================================================================
 
@@ -320,7 +418,36 @@ def inputGedungAdmin(request):
     return render(request, "admin/inputGedung.html", konteks)
 
 
+@login_required
+@akses_admin()
+def editGedungAdmin(request, id):
+    a = Gedung.objects.get(id=id)
+    if request.method == 'POST':
+        form = GedungForm(request.POST, instance=a)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Data berhasil di edit")
+            return redirect(to='daftargedungadmin')
+        else:
+            messages.error(request, "Data tidak valid")
+    else:
+        form = GedungForm(instance=a)
+    konteks = {
+        'form': form,
+    }
+    return render(request, "admin/inputGedung.html", konteks)
+
+
+@login_required
+@akses_admin()
+def deleteGedungAdmin(request, id):
+    a = Gedung.objects.get(id=id)
+    a.delete()
+    messages.success(request, "Data berhasil di hapus")
+    return redirect(to='daftargedungadmin')
+
 # ----------------------TEKNISI-------------------------------
+
 
 @login_required
 def home(request):

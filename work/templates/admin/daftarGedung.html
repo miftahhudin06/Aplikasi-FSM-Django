@@ -41,12 +41,12 @@
                 {{x.pengelola}}
               </td>
               <td>
-                <a href="" type="button" class="btn btn-primary">
+                <a href="{% url 'editgedungadmin' x.id %}" type="button" class="btn btn-primary">
                   Edit
                 </a>
               </td>
               <td>
-                <a href="" type="button" class="btn btn-danger">
+                <a href="{% url 'deletegedungadmin' x.id %}" type="button" class="btn btn-danger">
                   Hapus
                 </a>
               </td>

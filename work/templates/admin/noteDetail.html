@@ -45,9 +45,8 @@
               <th>
                 Status
               </th>
-              <th>
-                Pilihan
-              </th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -81,6 +80,11 @@
               <td>
               </td>
               {% else %}
+              <td>
+                <a href="{% url 'editnoteadmin' x.id %}" type="button" class="btn btn-primary">
+                  Edit
+                </a>
+              </td>
               <td>
                 <a href="{% url 'deletenoteadmin' x.id %}" type="button" class="btn btn-danger">
                   Hapus
